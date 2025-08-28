@@ -1,0 +1,35 @@
+<div class="auth-container">
+  <div class="card">
+    <h1 class="title">Welcome back</h1>
+    <p class="subtitle">Sign in to continue</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="field">
+        <label>Email</label>
+        <input type="email" formControlName="Email" placeholder="you@example.com" />
+        <small class="hint"
+               *ngIf="form.get('Email')?.touched && form.get('Email')?.invalid">
+          Valid email is required.
+        </small>
+      </div>
+
+      <div class="field">
+        <label>Password</label>
+        <input type="password" formControlName="Password" placeholder="••••••••" />
+        <small class="hint"
+               *ngIf="form.get('Password')?.touched && form.get('Password')?.invalid">
+          Password is required.
+        </small>
+      </div>
+
+      <button class="btn" type="submit" [disabled]="form.invalid">Sign in</button>
+
+      <div class="meta">
+        <span>Don’t have an account?</span>
+        <a routerLink="/register">Create one</a>
+      </div>
+
+      <div class="alert error" *ngIf="error">{{ error }}</div>
+    </form>
+  </div>
+</div>

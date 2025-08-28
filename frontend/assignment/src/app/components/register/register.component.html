@@ -1,0 +1,82 @@
+<div class="auth-container">
+  <div class="card">
+    <h1 class="title">Create your account</h1>
+    <p class="subtitle">It only takes a minute</p>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="grid-2">
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" formControlName="FullName" placeholder="Jane Doe" />
+          <small class="hint"
+                 *ngIf="form.get('FullName')?.touched && form.get('FullName')?.invalid">
+            Full name is required.
+          </small>
+        </div>
+
+        <div class="field">
+          <label>Email</label>
+          <input type="email" formControlName="Email" placeholder="you@example.com" />
+          <small class="hint"
+                 *ngIf="form.get('Email')?.touched && form.get('Email')?.invalid">
+            Valid email is required.
+          </small>
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input type="password" formControlName="Password" placeholder="••••••••" />
+          <small class="hint"
+                 *ngIf="form.get('Password')?.touched && (form.get('Password')?.errors?.['passwordPattern'] || form.get('Password')?.invalid)">
+            Min 8 chars, include letters & numbers.
+          </small>
+        </div>
+
+        <div class="field">
+          <label>Confirm Password</label>
+          <input type="password" formControlName="ConfirmPassword" placeholder="••••••••" />
+          <small class="hint"
+                 *ngIf="form.errors?.['mismatch'] && form.get('ConfirmPassword')?.touched">
+            Passwords do not match.
+          </small>
+        </div>
+
+        <div class="field">
+          <label>Phone Number</label>
+          <input type="text" formControlName="PhoneNumber" placeholder="Digits only" />
+          <small class="hint"
+                 *ngIf="form.get('PhoneNumber')?.touched && form.get('PhoneNumber')?.invalid">
+            7–15 digits.
+          </small>
+        </div>
+
+        <div class="field">
+          <label>Date of Birth</label>
+          <input type="date" formControlName="DateOfBirth" />
+          <small class="hint"
+                 *ngIf="form.get('DateOfBirth')?.touched && form.get('DateOfBirth')?.errors?.['futureDate']">
+            Must be in the past.
+          </small>
+        </div>
+
+        <div class="field">
+          <label>Role</label>
+          <select formControlName="Role">
+            <option value="User">User</option>
+            <option value="Admin">Admin</option>
+          </select>
+        </div>
+      </div>
+
+      <button class="btn" type="submit" [disabled]="form.invalid">Create account</button>
+
+      <div class="meta">
+        <span>Already have an account?</span>
+        <a routerLink="/login">Sign in</a>
+      </div>
+
+      <div class="alert error" *ngIf="error">{{ error }}</div>
+      <div class="alert success" *ngIf="success">{{ success }}</div>
+    </form>
+  </div>
+</div>
