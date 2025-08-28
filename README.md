@@ -1,3 +1,4 @@
+
 ---
 
 # ASE Auth (Angular + Node + MSSQL)
@@ -12,7 +13,7 @@ Simple login/registration app:
 
 ### 1) Database
 
-** Docker (Win/macOS)**
+**Option A – Docker (Win/macOS)**
 
 ```bash
 # start SQL Server in Docker (host 1433 → container 1433)
